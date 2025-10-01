@@ -1,0 +1,57 @@
+/* 전체 레이아웃 초기화 */
+body, h1, ul, li, a, span {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* header 전체 */
+header {
+  background-color: #2d6a4f;  /* 진한 초록 */
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 3px solid #1b4332;
+}
+
+/* 로고 */
+header h1 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+header h1 a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 로그인/회원가입, 로그아웃/게시판 메뉴 */
+header ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+header ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+/* hover 효과 */
+header ul li a:hover {
+  background-color: #40916c;
+}
+
+/* 환영 메시지 */
+header span {
+  font-weight: bold;
+  margin-right: 5px;
+}

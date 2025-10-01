@@ -1,0 +1,90 @@
+/* 전체 페이지 레이아웃 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 제목 */
+h1 {
+  margin-top: 30px;
+  color: #2d6a4f;
+  font-size: 26px;
+}
+
+/* 구분선 */
+hr {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-top: 2px solid #2d6a4f;
+  margin: 15px 0 30px 0;
+}
+
+/* 로그인 섹션 */
+#login {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* 입력 필드 */
+#login input[type="text"],
+#login input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+#login input[type="text"]:focus,
+#login input[type="password"]:focus {
+  border-color: #2d6a4f;
+  outline: none;
+}
+
+/* 버튼 */
+#login input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #2d6a4f;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+#login input[type="submit"]:hover {
+  background-color: #40916c;
+}
+
+/* 회원가입 링크 */
+#login p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+#login p a {
+  color: #2d6a4f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#login p a:hover {
+  text-decoration: underline;
+}
