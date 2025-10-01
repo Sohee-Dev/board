@@ -1,0 +1,20 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="headerFragment">
+  <header>
+    <h1><a href="/">Green 게시판</a></h1>
+    <div th:if="${session.userId == null}">
+      <ul>
+        <li><a href="/joinPg">회원가입</a></li>
+        <li><a href="/loginPg">로그인</a></li>
+      </ul>
+    </div>
+    <div th:unless="${session.userId == null}">
+      <span th:text="${session.name}"></span>님 환영합니다!
+      <br />
+      <ul>
+        <li><a href="/logout">로그아웃</a></li>
+        <li><a href="/board/list">자유게시판</a></li>
+      </ul>
+    </div>
+    <br />
+  </header>
+</div>

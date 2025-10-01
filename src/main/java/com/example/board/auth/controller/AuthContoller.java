@@ -10,14 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.board.auth.dto.UserDTO;
 import com.example.board.auth.service.AuthService;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/")
@@ -66,6 +66,34 @@ public class AuthContoller {
             body.put("msg", "중복된 아이디 입니다");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(body); // 중복, 409리턴
         }
+    }
+
+    @PostMapping("/login")
+    public String login(UserDTO userDTO, HttpSession session, RedirectAttributes rttr) {
+        String msg = "";
+        UserDTO user = authService.login(userDTO);
+
+        if (user != null) {
+            session.setAttribute("userId", user.getUserId());
+            session.setAttribute("name", user.getName());
+            return "redirect:/";
+        } else {
+            msg = "아이디 및 비밀번호를 확인해주세요";
+            rttr.addFlashAttribute("msg", msg);
+        }
+        return "redirect:/loginPg";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+
+        if (userId != null) {
+            session.removeAttribute("userId");
+            session.removeAttribute("name");
+        }
+
+        return "redirect:/";
     }
 
 }

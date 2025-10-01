@@ -22,7 +22,7 @@ public class AuthService {
         return userRepository.existsByUsername(username);
     }
 
-    // 로그인
+    // 회원가입
     public boolean join(UserDTO userDTO) {
         boolean flag = false;
         User userMapped = entityDtoMapper.toUser(userDTO);
@@ -35,5 +35,18 @@ public class AuthService {
         }
 
         return flag;
+    }
+
+    // 로그인
+    public UserDTO login(UserDTO userDTO) {
+
+        User userMapped = entityDtoMapper.toUser(userDTO);
+        User user = userRepository.findByUsernameAndPassword(userMapped.getUsername(), userMapped.getPassword());
+
+        if (user == null) {
+            return null;
+        }
+
+        return entityDtoMapper.toUserDTO(user);
     }
 }
