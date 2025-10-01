@@ -33,7 +33,7 @@ public class EntityDtoMapper {
                 .bno(board.getBno())
                 .title(board.getTitle())
                 .content(board.getContent())
-                .writer(board.getUser().getName())
+                .writer(board.getUser().getUserId())
                 .build();
     }
 
