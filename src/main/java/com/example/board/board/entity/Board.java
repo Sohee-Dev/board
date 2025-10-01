@@ -1,6 +1,7 @@
 package com.example.board.board.entity;
 
 import com.example.board.auth.entity.User;
+import com.example.board.common.entity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +24,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Board {
+@Builder
+public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
