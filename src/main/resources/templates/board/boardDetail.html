@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: headerFragment"></div>
+    <div>
+      <form th:action="@{/board/update}" method="post">
+        <input type="hidden" name="bno" th:value="${board.bno}" />
+
+        <div>
+          <label>제목</label>
+          <input
+            type="text"
+            name="title"
+            th:value="${board.title}"
+            th:if="${session.userId == board.writer}"
+          />
+          <input
+            type="text"
+            name="title"
+            th:value="${board.title}"
+            th:unless="${session.userId == board.writer}"
+            readonly
+          />
+        </div>
+
+        <div>
+          <label>내용</label>
+          <textarea
+            name="content"
+            th:if="${session.userId == board.writer}"
+            th:text="${board.content}"
+          ></textarea>
+          <textarea
+            name="content"
+            th:unless="${session.userId == board.writer}"
+            th:text="${board.content}"
+            readonly
+          ></textarea>
+        </div>
+
+        <div>
+          <label>작성자</label>
+          <input
+            type="text"
+            name="writer"
+            th:value="${board.writer}"
+            readonly
+          />
+        </div>
+
+        <div>
+          <label>작성일</label>
+          <input type="text" th:value="${board.createdAt}" readonly />
+        </div>
+
+        <div th:if="${session.userId == board.writer}">
+          <button type="submit">수정하기</button>
+          <a th:href="@{/board/delete(bno=${board.bno})}">삭제하기</a>
+        </div>
+        <div>
+          <a th:href="@{/board/list}">목록으로</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

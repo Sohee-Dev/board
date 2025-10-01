@@ -50,4 +50,34 @@ public class BoardService {
         }
         return "오류 발생";
     }
+
+    public BoardDTO boardDetail(Long bno) {
+        Optional<Board> op_board = boardRepository.findById(bno);
+        Board board = op_board.get();
+
+        BoardDTO boardDTO = entityDtoMapper.toBoardDTO(board);
+        return boardDTO;
+    }
+
+    public String boardUpdate(BoardDTO boardDTO) {
+        Board board = entityDtoMapper.toBoard(boardDTO);
+
+        if (board != null) {
+            Optional<User> op_user = userRepository.findById(boardDTO.getWriter());
+            User user = op_user.get();
+            board.setUser(user);
+            boardRepository.save(board);
+            return "게시글 수정이 완료되었습니다";
+        }
+        return "오류 발생";
+    }
+
+    public String boardDelete(Long bno) {
+        if (bno != null) {
+            boardRepository.deleteById(bno);
+            return "게시글 삭제 완료";
+        }
+        return "삭제 할 수 없습니다";
+    }
+
 }

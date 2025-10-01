@@ -23,7 +23,7 @@
             <td th:text="${board.bno}"></td>
             <td>
               <a
-                th:href="@{/board/detail(id=${board.bno})}"
+                th:href="@{/board/detail(bno=${board.bno})}"
                 th:text="${board.title}"
               >
                 제목

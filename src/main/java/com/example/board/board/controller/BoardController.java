@@ -43,9 +43,25 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public String getMethodName(@RequestParam Long bno, Model model) {
+    public String getMethodName(@RequestParam("bno") Long bno, Model model) {
+        BoardDTO board = boardService.boardDetail(bno);
 
-        return new String();
+        model.addAttribute("board", board);
+        return "board/boardDetail";
+    }
+
+    @PostMapping("/update")
+    public String boardUpdate(BoardDTO boardDTO, Model model) {
+        String msg = boardService.boardUpdate(boardDTO);
+        model.addAttribute("msg", msg);
+        return "redirect:/board/list";
+    }
+
+    @GetMapping("/delete")
+    public String boardDelete(@RequestParam("bno") Long bno, Model model) {
+        String msg = boardService.boardDelete(bno);
+        model.addAttribute("msg", msg);
+        return "redirect:/board/list";
     }
 
 }
